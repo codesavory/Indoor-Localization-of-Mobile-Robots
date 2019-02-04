@@ -1,0 +1,74 @@
+from bstem.platform import AdCord
+from math import *
+import time
+
+def orientation():
+        ad=AdCord()
+        #Rgyro - as measured by gyroscope
+
+        Rgyro=[]
+        Rxgyro=[]
+        Rygyro=[]
+        Rzgyro=[]
+        magRacc=[]
+        Rgyro.append(ad.gyroscope.value)
+        Rxgyro.append(Rgyro[0][0])
+        Rygyro.append(Rgyro[0][1])
+        Rzgyro.append(Rgyro[0][2]) #not used value
+
+        magRacc.append(sqrt(pow(Rygyro[0],2)+pow(Rzgyro[0],2)))
+
+        #|Racc| = SQRT(RxAcc^2 +RyAcc^2 + RzAcc^2),
+
+        #lst=list(Rgyro[0])
+        #lst[0]=Rygyro[0]/magRacc
+        #lst[1]=Rzgyro[0]/magRacc
+        #Racc[0]=tuple(lst)
+
+
+        #Next we'll introduce a new vector and we'll call it
+
+        #Rest = [RxEst,RyEst,RzEst]
+        #Rest=[]
+        #Rxest=[]
+        #Ryest=[]
+        #Rzest=[]
+
+        #Rest.append(Racc[0])
+        #Rxest.append(Rest[0][0])
+        #Ryest.append(Rest[0][1])
+
+        n=0
+        #Axy=[]
+        #RateAxy=[]
+        #RateAxy.append(ad.gyroscope.z)
+        #Axy.append({Rxest[0],Ryest[0]})
+        f=open("reading.txt",'w')
+        while(True):
+                time.sleep(0.01)
+                #if(ad.accelerometer.x==0 and ad.accelerometer.y==0):
+                 #       continue
+                n+=1
+                Rgyro.append(ad.gyroscope.value)
+                Rzgyro.append(Rgyro[n][0])
+                Rygyro.append(Rgyro[n][1])
+                magRacc[n]=sqrt(pow(Rygyro[n],2)+pow(Rzgyro[n],2))
+                t=magRacc.add
+                mean=t/100
+                angle=mean*57.294
+ 
+                
+                
+                #angle=atan2(Rxest[n],Ryest[n])
+                #f.write("x:")
+                #f.write(str(Rxest[n]))
+                #f.write("     ,y:")
+                f.write("abcd")
+		f.write("     ,angle:")
+		f.write(str(angle))
+		#f.write("     ,degrees:")
+		#f.write(str(angle*57.294))
+                f.write('\n')
+
+        f.close()
+

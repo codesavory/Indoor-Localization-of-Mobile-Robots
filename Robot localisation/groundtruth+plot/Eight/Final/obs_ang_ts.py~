@@ -1,0 +1,4 @@
+import fileinput
+with open("obs_ang_ts.txt", 'w') as fout ,fileinput.input("sensor_angle.txt","tstamp.txt") as fin:
+		for line in fin:
+			fout.write(line)

@@ -1,0 +1,32 @@
+import threading
+import obstacle_avoided as obs
+from gyro_obstacle import *#returns gyro for evry 20ms without summation
+
+i=threading.Thread(target=gyror) #calling the gyroscope thread
+i.daemon=True
+i.start()
+
+#qac = Queue.Queue()
+ang=0
+theta = 0
+def angle_calculate():
+	global ang
+	global theta
+	while True:
+		gz = qg.get()
+		#if obs.rc == 'w':
+			#qac.put(ang)
+			#ang=0
+			#obs.f.write("w"+","+str(ang)+","+str(-obs.adr.encoder[2].position*3.38)+" "+str(obs.adr.encoder[0].position*3.38)+"\n")
+		if obs.rc == 'a':
+			ang = ang + gz
+			obs.angr = ang
+			obs.f.write("a"+","+str(ang)+","+str(-adr.encoder[2].position*3.38)+" "+str(adr.encoder[0].position*3.38)+"\n")
+		elif obs.rc == 'd':
+		        ang = ang + gz
+			obs.angr = ang
+			obs.f.write("d"+","+str(ang)+","+str(-adr.encoder[2].position*3.38)+" "+str(adr.encoder[0].position*3.38)+"\n")
+		#elif obs.rc == 's':
+			#qac.put(ang)
+			#ang=0
+			#obs.f.write("s"+","+str(ang)+","+str(-obs.adr.encoder[2].position*3.38)+" "+str(obs.adr.encoder[0].position*3.38)+"\n")

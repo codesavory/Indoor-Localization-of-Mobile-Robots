@@ -1,0 +1,48 @@
+linearAccel: [[-0.06312435]],[[-0.00114031]],::[[-0.06312435]],0
+Orientation:Radians:-1.57079632679 ,Degrees:-90.0
+linearAccel: [[-0.09923399]],[[-0.00137713]],::[[-0.09923399]],0
+Orientation:Radians:-1.57079632679 ,Degrees:-90.0
+linearAccel: [[-0.07102468]],[[-0.00137573]],::[[-0.07102468]],0
+Orientation:Radians:-1.57079632679 ,Degrees:-90.0
+linearAccel: [[-0.07532071]],[[-0.00101021]],::[[-0.07532071]],0
+Orientation:Radians:-1.57079632679 ,Degrees:-90.0
+linearAccel: [[-0.11161433]],[[-0.00101021]],::[[-0.11161433]],0
+Orientation:Radians:-1.57079632679 ,Degrees:-90.0
+linearAccel: [[ 0.08997143]],[[ 0.04388452]],::[[ 0.08997143]],0
+Orientation:Radians:1.57079632679 ,Degrees:90.0
+linearAccel: [[ 0.26193542]],[[  4.43669250e-05]],::[[ 0.26193542]],0
+Orientation:Radians:1.57079632679 ,Degrees:90.0
+linearAccel: [[-0.1402077]],[[ 0.01153668]],::[[-0.1402077]],0
+Orientation:Radians:-1.57079632679 ,Degrees:-90.0
+linearAccel: [[-0.20944133]],[[-0.09961765]],::[[-0.20944133]],[[-0.09961765]]
+Orientation:Radians:-2.01476272873 ,Degrees:-115.437401077
+linearAccel: [[ 0.0556336]],[[ 0.08782969]],::[[ 0.0556336]],[[ 0.08782969]]
+Orientation:Radians:0.564635479332 ,Degrees:32.351229929
+linearAccel: [[ 0.38652263]],[[ 0.10069989]],::[[ 0.38652263]],[[ 0.10069989]]
+Orientation:Radians:1.31593395619 ,Degrees:75.3974618079
+linearAccel: [[ 0.09909416]],[[ 0.14429294]],::[[ 0.09909416]],[[ 0.14429294]]
+Orientation:Radians:0.601782486441 ,Degrees:34.4795966579
+linearAccel: [[-0.07365827]],[[-0.02650617]],::[[-0.07365827]],0
+Orientation:Radians:-1.57079632679 ,Degrees:-90.0
+linearAccel: [[ 0.36973255]],[[ 0.12034335]],::[[ 0.36973255]],[[ 0.12034335]]
+Orientation:Radians:1.25612350471 ,Degrees:71.9705753671
+linearAccel: [[ 0.11946326]],[[ 0.10149097]],::[[ 0.11946326]],[[ 0.10149097]]
+Orientation:Radians:0.866558944288 ,Degrees:49.650170207
+linearAccel: [[ 0.05151327]],[[ 0.03771219]],::[[ 0.05151327]],0
+Orientation:Radians:1.57079632679 ,Degrees:90.0
+linearAccel: [[ 0.42946174]],[[ 0.00138179]],::[[ 0.42946174]],0
+Orientation:Radians:1.57079632679 ,Degrees:90.0
+linearAccel: [[ 0.14760908]],[[ 0.00270925]],::[[ 0.14760908]],0
+Orientation:Radians:1.57079632679 ,Degrees:90.0
+linearAccel: [[ 0.29751796]],[[ 0.00181981]],::[[ 0.29751796]],0
+Orientation:Radians:1.57079632679 ,Degrees:90.0
+linearAccel: [[-0.10818784]],[[ 0.00271513]],::[[-0.10818784]],0
+Orientation:Radians:-1.57079632679 ,Degrees:-90.0
+linearAccel: [[ 0.20935715]],[[ 0.00168967]],::[[ 0.20935715]],0
+Orientation:Radians:1.57079632679 ,Degrees:90.0
+linearAccel: [[ 0.12912597]],[[ 0.0017093]],::[[ 0.12912597]],0
+Orientation:Radians:1.57079632679 ,Degrees:90.0
+linearAccel: [[ 0.06328402]],[[ 0.00170738]],::[[ 0.06328402]],0
+Orientation:Radians:1.57079632679 ,Degrees:90.0
+linearAccel: [[ 0.09152359]],[[ 0.00170738]],::[[ 0.09152359]],0
+Orientation:Radians:1.57079632679 ,Degrees:90.0

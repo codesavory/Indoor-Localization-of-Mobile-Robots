@@ -1,0 +1,107 @@
+from bstem.platform import AdCord
+import threading
+import serial_read as sr
+import angle_calculate_obstacle as aco
+import plot_klaus_brenner as pkb
+from motor import *
+import sys
+
+g=threading.Thread(target=sr.serial_read) #serial read thread
+g.daemon=True
+g.start()
+
+h=threading.Thread(target=aco.angle_calculate) #to dynamicaly calculate angle during obstacle alone
+h.daemon=True
+h.start()
+
+i=threading.Thread(target=erun) #erun thread to get user input for controlling robot
+i.daemon=True
+i.start()
+
+f=open('(g+e).txt','w',0)
+angr=0
+rc='w'
+scalar=0.2
+tscalar=0.35
+newscalar=0.05
+
+pose = (pkb.ix,pkb.iy,0)
+#motor_ticks = []
+last_ticks = None
+first_motor_ticks = True
+
+def calculate_ticks(l,r):
+	ticks = ((l),(r))
+	global first_motor_ticks,last_ticks
+        if first_motor_ticks:
+       		first_motor_ticks = False
+       		last_ticks = ticks
+        motor_ticks = ( tuple([(int(float(ticks[i])))-(int(float(last_ticks[i]))) for i in range(2)]))
+        last_ticks = ticks
+	return motor_ticks
+
+def run():
+	global angr
+	global rc
+	global pose
+	while True:
+		rc = sr.qr.get()
+		#print("Leftwheel:",-adr.encoder[2].position*3.38)#left motor
+		#print("Rightwheel:",adr.encoder[0].position*3.38)#right motor
+		#f.write(str(-adr.encoder[2].position*3.38)+" "+str(adr.encoder[0].position*3.38)+"\n")
+		if rc =='w':#forward
+			#print(rc)
+			aco.adr.motor[0].speed=scalar #right motor 
+			aco.adr.motor[2].speed=-scalar #left motor
+			l = -(aco.adr.encoder[2].position)
+			r = (aco.adr.encoder[0].position)
+			motor_ticks = calculate_ticks(l,r)
+			pose = pkb.filter_step(pose, motor_ticks)
+			angr = pose[2]
+
+			#for gyroscope
+			aco.p_dist = (l+r)/2
+			aco.ang = angr
+			aco.x = pose[0]
+			aco.y = pose[1]
+			f.write(str(pose[0])+","+str(pose[1])+","+'w'+","+str(l)+" "+str(r)+","+str(angr*57.2957795)+"\n")
+
+		elif rc=='a':#left
+			aco.adr.motor[0].speed=tscalar
+			aco.adr.motor[2].speed=-newscalar
+			#z,gZ=g_angler('z',adr.gyroscope.z)
+
+		elif rc=='d':#right
+			aco.adr.motor[0].speed=newscalar
+			aco.adr.motor[2].speed=-tscalar
+			#z,gZ=g_angler('z',adr.gyroscope.z)
+			
+		elif rc=='s':#back
+			aco.adr.motor[0].speed=-scalar
+			aco.adr.motor[2].speed=scalar
+			#aco.ang=0
+			l = -(aco.adr.encoder[2].position)
+			r = (aco.adr.encoder[0].position)
+			motor_ticks = calculate_ticks(l,r)
+			pose = pkb.filter_step(pose, motor_ticks)
+			angr= pose[2]
+
+			#for gyroscope
+			aco.p_dist = (l+r)/2
+			aco.ang = angr
+			aco.x = pose[0]
+			aco.y = pose[1]
+			f.write(str(pose[0])+","+str(pose[1])+","+'s'+","+str(l)+" "+str(r)+","+str(angr*57.2957795)+"\n")
+
+		elif rc==' ':#stop
+			aco.adr.motor[0].speed=0
+			aco.adr.motor[2].speed=0
+
+		elif rc =='x':#quit
+			aco.adr.motor[0].speed=0
+			aco.adr.motor[2].speed=0
+			sys.exit()
+	f.close()
+
+if __name__ == "__main__":
+    run()

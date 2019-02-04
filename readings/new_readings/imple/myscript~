@@ -1,0 +1,5 @@
+#!/bin/bash
+# My first script
+
+scp newdata.txt ragul@10.42.0.1:/home/ragul/Bstem/mat_integration1
+

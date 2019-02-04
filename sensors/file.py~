@@ -1,0 +1,6 @@
+
+x=5
+y=10
+f=open("reading.txt",'w')
+f.write("x:",x," y:",y)
+f.close()

@@ -1,0 +1,4 @@
+In Maps:
+1. implement Thread Synchronization
+2. Check why double point is printed
+3. Gyro incrementing high when turning

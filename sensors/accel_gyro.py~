@@ -1,0 +1,23 @@
+from bstem.platform import AdCord
+from math import *
+import time
+ad=AdCord()
+
+angle=0
+rotationThreshold=1
+print("Init Gyro: ",ad.gyroscope.enabled)
+ad.gyroscope.enabled=False
+print("Gyro Now: ",ad.gyroscope.enabled)
+ad.gyroscope.enabled=True
+#ad.gyroscope.dps=2000
+print(ad.gyroscope.dps)
+while(True):
+	gyroRate=ad.gyroscope.z
+	#print("Grate: ",gyroRate)
+	if (gyroRate >= rotationThreshold or gyroRate <= -rotationThreshold):
+		angle+=(gyroRate*57.2957795)/100
+		#angle/=8.75
+		print("Gyro:",angle)
+		time.sleep(0.01)
+#print(ad.accelerometer.value)
+#print(ad.gyroscope.value)

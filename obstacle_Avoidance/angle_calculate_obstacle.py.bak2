@@ -1,0 +1,68 @@
+import threading
+import math
+from gyro_obstacle import *#returns gyro for every 20ms without summation
+
+i=threading.Thread(target=gyror) #calling the gyroscope thread
+i.daemon=True
+i.start()
+
+#qac = Queue.Queue()
+ang=0
+theta = 0
+p_dist=0
+x=0
+y=0
+def angle_calculate():
+	import obstacle_avoided as obs
+	global ang
+	global theta
+	global p_dist
+	global x,y
+	while True:
+		gz = qg.get()
+
+		ticks_to_cm = (obs.pkb.ticks_to_cm_l + obs.pkb.ticks_to_cm_r)/2
+		#if obs.rc == 'w':
+			#qac.put(ang)
+			#ang=0
+			#obs.f.write("w"+","+str(ang)+","+str(-obs.adr.encoder[2].position*3.38)+" "+str(obs.adr.encoder[0].position*3.38)+"\n")
+		if obs.rc == 'a':#left
+			ang+= math.radians(gz)
+			l = -adr.encoder[2].position
+			r = adr.encoder[0].position
+			dist=((l+r)/2)
+			r_dist = (dist-p_dist)*ticks_to_cm
+			#print (dist,p_dist,r)
+			p_dist=dist
+			theta=ang
+			x+= (r_dist*(math.cos(theta)))
+			y+= (r_dist*(math.sin(theta)))
+
+			#for encoders
+			obs.pose = (x,y,ang)
+			obs.last_ticks = ((l),(r))
+			obs.angr = ang
+			obs.f.write(str(obs.pose[0])+","+str(obs.pose[1])+","+"a"+","+str(l)+" "+str(r)+","+str(ang*57.2957795)+"\n")
+
+		elif obs.rc == 'd':#right
+		        ang+= math.radians(gz)
+			l = -adr.encoder[2].position
+			r = adr.encoder[0].position
+			dist=((l+r)/2)*ticks_to_cm
+			r_dist = dist-p_dist
+			#print (dist,p_dist,r)
+			p_dist=dist
+			theta=ang
+			x+=(r_dist*(math.cos(theta)))
+			y+=(r_dist*(math.sin(theta)))
+
+			#for encoders
+			obs.pose = (x,y,ang)
+			obs.last_ticks = ((l),(r))
+			obs.angr = ang
+			obs.f.write(str(obs.pose[0])+","+str(obs.pose[1])+","+"d"+","+str(l)+" "+str(r)+","+str(ang*57.2957795)+"\n")
+
+		#elif obs.rc == 's':
+			#qac.put(ang)
+			#ang=0
+			#obs.f.write("s"+","+str(ang)+","+str(-obs.adr.encoder[2].position*3.38)+" "+str(obs.adr.encoder[0].position*3.38)+"\n")

@@ -1,0 +1,11 @@
+from bstem.platform import AdCord
+from math import *
+import time
+import sys
+ad=AdCord()
+while(1):
+	print ("X:",ad.gyroscope.x*57.2957795)
+	print ("Y:",ad.gyroscope.y*57.2957795)
+	print ("Z:",ad.gyroscope.z*57.2957795)
+	print ("--------------------------------------------------")
+	time.sleep(0.2)

@@ -1,0 +1,8 @@
+from bstem.platform import AdCord
+import time
+ad=AdCord()
+
+while(True):
+	print(ad.accelerometer.value.x*9.8,ad.accelerometer.value.y*9.8,ad.accelerometer.value.z*9.8)
+	time.sleep(.5)
+
